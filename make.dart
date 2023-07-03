@@ -1,4 +1,4 @@
-#!/usr/bin/env fvm dart
+#!/usr/bin/env dart
 // ignore_for_file: avoid_print
 
 /// 使用示例
@@ -81,7 +81,7 @@ Future<void> updateBuildData() async {
 }
 
 Future<void> dartFormat() async {
-  final result = await Process.run('fvm', ['dart', 'format', '.']);
+  final result = await Process.run('dart', ['format', '.']);
   print('\n' + result.stdout);
   if (result.exitCode != 0) {
     print(result.stderr);
@@ -90,13 +90,12 @@ Future<void> dartFormat() async {
 }
 
 void flutterRun(String mode) {
-  Process.start('fvm', ['flutter', 'run', mode == null ? '' : '--$mode'],
+  Process.start('flutter', ['run', mode == null ? '' : '--$mode'],
       mode: ProcessStartMode.inheritStdio, runInShell: true);
 }
 
 Future<void> flutterBuild(String source, String target, bool isAndroid) async {
   final args = [
-    'flutter',
     'build',
     isAndroid ? 'apk' : 'ipa',
     '--target-platform=android-arm64',
@@ -106,7 +105,7 @@ Future<void> flutterBuild(String source, String target, bool isAndroid) async {
   ];
   if (!isAndroid) args.removeAt(3);
   print('Building with args: ${args.join(' ')}');
-  final buildResult = await Process.run('fvm', args, runInShell: true);
+  final buildResult = await Process.run('flutter', args, runInShell: true);
   final exitCode = buildResult.exitCode;
 
   if (exitCode == 0) {
