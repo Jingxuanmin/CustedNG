@@ -20,4 +20,4 @@ jobs:
         with:
           flutter-version: '3.7.7'
       - run: flutter pub get
-      - run: ./make.dart run
+      - run: ./make.dart build
